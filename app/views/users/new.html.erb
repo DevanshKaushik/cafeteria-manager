@@ -1,1 +1,29 @@
-<p>This will allow to create a new user</p>
+<main class="users">
+
+  <h1 class="users__title">Sign up.</h1>
+  <p class="users__desc">Create a new account to order delicious food right at your doorstep.</p>
+
+  <section class="users__form">
+    <%= form_with(url: users_path) do |form| %>
+      <div class="users__form--section">
+        <p class="users__form--lable">First name</p>
+        <%= form.text_field :first_name, class: "users__form--input" %>
+      </div>
+      <div class="users__form--section">
+        <p class="users__form--lable">Last name</p>
+        <%= form.text_field :last_name, class: "users__form--input" %>
+      </div>
+      <div class="users__form--section">
+        <p class="users__form--lable">Email</p>
+        <%= form.email_field :email, class: "users__form--input" %>
+      </div>
+      <div class="users__form--section">
+        <p class="users__form--lable">Password</p>
+        <%= form.password_field :password, class: "users__form--input" %>
+      </div>
+      <div class="users__form--section">
+        <%= form.submit "Continue", class: "users__form--submit" %>
+      </div>
+    <% end %>
+  </section>
+</main>

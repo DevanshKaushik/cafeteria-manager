@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       first_name: params[:first_name],
       last_name: params[:last_name],
       email: params[:email],
-      password_digest: params[:password],
+      password: params[:password],
       role: role,
     )
     response_text = "New user is created with the user_id: #{new_user.id}"
