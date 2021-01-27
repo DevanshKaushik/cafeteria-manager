@@ -11,6 +11,13 @@
   </head>
 
   <body>
+
+    <% if !flash[:error].nil? %>
+      <div class="errorbox">
+        <%= flash[:error] %>
+      </div>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

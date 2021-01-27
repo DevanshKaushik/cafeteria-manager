@@ -1,0 +1,12 @@
+.errorbox {
+  position: absolute;
+  right: 20px;
+  top: 30px;
+  max-width: 400px;
+  padding: 30px;
+  background-color: #d24747;
+  color: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16);
+  animation: fade-out 7s ease forwards;
+}

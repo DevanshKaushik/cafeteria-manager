@@ -1,0 +1,21 @@
+<main class="users">
+
+  <h1 class="users__title">Log in.</h1>
+  <p class="users__desc">Login to view your cart and previous order details</p>
+
+  <section class="users__form">
+    <%= form_with(url: sessions_path) do |form| %>
+      <div class="users__form--section">
+        <p class="users__form--lable">Email</p>
+        <%= form.email_field :email, class: "users__form--input" %>
+      </div>
+      <div class="users__form--section">
+        <p class="users__form--lable">Password</p>
+        <%= form.password_field :password, class: "users__form--input" %>
+      </div>
+      <div class="users__form--section">
+        <%= form.submit "Log in", class: "users__form--submit" %>
+      </div>
+    <% end %>
+  </section>
+</main>
