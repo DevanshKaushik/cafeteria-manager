@@ -1,0 +1,35 @@
+.msgbox {
+  position: absolute;
+  right: 20px;
+  top: 30px;
+  max-width: 400px;
+  padding: 30px;
+  color: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16);
+  animation: fade-out 7s ease forwards;
+  pointer-events: none;
+  animation: fade-out 6s ease forwards;
+
+  &__error {
+    background-color: #d24747;
+  }
+
+  &__notice {
+    background-color: #4778d2;
+  }
+
+  &__alert {
+    background-color: #e49c16;
+  }
+}
+
+@keyframes fade-out {
+  70% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

@@ -12,11 +12,9 @@
 
   <body>
 
-    <% if !flash[:error].nil? %>
-      <div class="errorbox">
-        <%= flash[:error] %>
-      </div>
-    <% end %>
+    <%= render partial: "partials/msg-box", locals: { type: "error" } %>
+    <%= render partial: "partials/msg-box", locals: { type: "alert" } %>
+    <%= render partial: "partials/msg-box", locals: { type: "notice" } %>
 
     <%= yield %>
   </body>
