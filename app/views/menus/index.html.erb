@@ -1,0 +1,18 @@
+<main class="menu">
+
+  <p class="menu__title">Order from the choice of your taste</p>
+
+  <%= render partial: "menu-section", locals: {
+    menu_title: "Breakfast",
+    menu_items: Menu.active.menu_items.breakfast
+  } %>
+  <%= render partial: "menu-section", locals: {
+    menu_title: "Lunch",
+    menu_items: Menu.active.menu_items.lunch
+  } %>
+  <%= render partial: "menu-section", locals: {
+    menu_title: "Dinner",
+    menu_items: Menu.active.menu_items.dinner
+  } %>
+
+</main>
