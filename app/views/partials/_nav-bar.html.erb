@@ -1,0 +1,13 @@
+<% if @current_user %>
+  <nav class="nav">
+    <div class="nav__logobox"></div>
+    <ul class="nav__list">
+      <li class="nav__list--item">
+        <a href="#" class="nav__list--link">Cart</a>
+      </li>
+      <li class="nav__list--item">
+        <%= link_to "Log out", destroy_sessions_path, method: "delete", class: "nav__list--link" %>
+      </li>
+    </ul>
+  </nav>
+<% end %>
