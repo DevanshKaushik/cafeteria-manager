@@ -7,6 +7,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def check_privilige(role)
+    unless current_user.role == role
+      flash[:error] = "You don't have required priviliges"
+      redirect_to "/"
+    end
+  end
+
   def current_user
     return @current_user if @current_user
 

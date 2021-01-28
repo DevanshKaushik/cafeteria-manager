@@ -5,8 +5,10 @@ class HomeController < ApplicationController
     if current_user
       if @current_user.role == "customer"
         redirect_to menus_path
+      elsif @current_user.role == "clerk"
+        render plain: "Welcome Clerk"
       else
-        render plain: "Welcome owner"
+        redirect_to dashboard_path
       end
     else
       render "index"
