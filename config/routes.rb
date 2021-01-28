@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "/" => "home#index"
   resources :users
   get "/signin" => "sessions#new", as: :new_sessions
   post "/signin" => "sessions#create", as: :sessions

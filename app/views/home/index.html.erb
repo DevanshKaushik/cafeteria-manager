@@ -1,0 +1,15 @@
+<main class="hero">
+  <h1 class="hero__title">Eat and enjoy delicious food</h1>
+
+  <section class="hero__cards">
+    <div class="hero__card">
+      <h3 class="hero__card--title">Create a new account to order delicious food right at your doorstep</h3>
+      <%= link_to "Create a new account", new_user_path, class: "hero__card--link" %>
+    </div>
+
+    <div class="hero__card">
+      <h3 class="hero__card--title">Log-in to your exisiting account to view previous orders and cart details</h3>
+      <%= link_to "Log-in to your account", sessions_path, class: "hero__card--link" %>
+    </div>
+  </section>
+</main>
