@@ -72,3 +72,70 @@
     }
   }
 }
+
+.emenu {
+  &__add {
+    display: grid;
+    grid-template-columns: 20% 30% 15% 15% 10%;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    max-width: 60%;
+
+    &--input {
+      padding: 10px;
+      border-radius: 5px;
+      border: solid 2px #c9c9c9;
+      color: #3a3944;
+      outline: none;
+    }
+
+    &--btn {
+      text-decoration: none;
+      background-color: #5d15bb;
+      color: white;
+      padding: 10px;
+      border: solid 2px #5d15bb;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:hover,
+      &:focus {
+        transform: scale(1.01) translateY(-1px);
+        box-shadow: 0 5px 10px rgba(#3a3944, 0.2);
+      }
+    }
+  }
+
+  &__name {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 40px;
+    color: #5d15bb;
+  }
+
+  &__item {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 20% 50% 15% 15%;
+    align-items: center;
+    padding: 20px 50px;
+    box-shadow: 0 10px 40px rgba(#3a3944, 0.16);
+    margin-bottom: 20px;
+
+    &--name {
+      padding-right: 10px;
+    }
+    &--desc {
+      font-size: 14px;
+      line-height: 1.4;
+      color: #615f72;
+      padding-right: 10px;
+    }
+
+    &--price,
+    &--category {
+      text-align: center;
+    }
+  }
+}

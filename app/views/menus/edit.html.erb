@@ -1,0 +1,30 @@
+<main class="menu">
+  <h1 class="menu__title">Customize your menu</h1>
+
+  <section class="menu__section">
+    <h3 class="emenu__name"><%= Menu.find(@menu_id).name %></h3>
+
+    <%= form_with(url: menu_items_path, method: "post", class: "emenu__add") do %>
+      <%= hidden_field_tag("menu_id", @menu_id) %>
+      <%= text_field_tag("name", nil, placeholder: "Item name", class: "emenu__add--input") %>
+      <%= text_field_tag("description", nil, placeholder: "Item description", class: "emenu__add--input") %>
+      <%= number_field_tag("price", nil, placeholder: "Price", class: "emenu__add--input") %>
+      <%= select_tag("category", options_for_select([
+        ["Breakfast", "Breakfast"],
+        ["Lunch", "Lunch"],
+        ["Dinner", "Dinner"]]
+      ), class: "emenu__add--input") %>
+      <%= submit_tag("Add", class: "emenu__add--btn") %>
+    <% end %>
+
+    <% Menu.find(@menu_id).menu_items.each do |menu_item| %>
+      <div class="emenu__item">
+        <p class="emenu__item--name"><%= menu_item.name %></p>
+        <p class="emenu__item--desc"><%= menu_item.description %></p>
+        <p class="emenu__item--price">&#x20B9; <%= menu_item.price %></p>
+        <p class="emenu__item--category"><%= menu_item.category %></p>
+      </div>
+    <% end %>
+
+  </section>
+</main>
