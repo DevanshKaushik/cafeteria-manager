@@ -1,0 +1,20 @@
+<main class="dashboard">
+  <h1 class="dashboard__title">Manage menus and see reports</h1>
+
+  <section class="dashboard__section dashboard__menu">
+    <h3 class="dashboard__menu--title">Manage menus</h3>
+    <% Menu.all.each do |menu| %>
+      <div class="dashboard__menu--item">
+        <p class="dashboard__menu--name"><%= menu.name %></p>
+        <% if menu.active %>
+          <p class="dashboard__menu--activelable">Active</p>
+        <% end %>
+      </div>
+    <% end %>
+
+    <%= form_with(url: menus_path, method: "post", class: "dashboard__menu--add") do %>
+      <%= text_field_tag("name", nil, placeholder: "Menu name", class: "dashboard__menu--add-input") %>
+      <%= submit_tag("Add", class: "dashboard__menu--add-btn") %>
+    <% end %>
+  </section>
+</main>
