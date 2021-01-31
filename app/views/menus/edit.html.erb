@@ -1,8 +1,21 @@
+<% current_menu = Menu.find(@menu_id) %>
+
 <main class="menu">
   <h1 class="menu__title">Customize your menu</h1>
 
   <section class="menu__section">
-    <h3 class="emenu__name"><%= Menu.find(@menu_id).name %></h3>
+    <div class="emenu__name">
+      <span><%= current_menu.name %></span>
+      <% if current_menu.active %>
+        <p class="active-lable">Active</p>
+      <% else %>
+        <%= form_with(url: menu_path, method: "put") do %>
+          <%= hidden_field_tag("menu_id", @menu_id) %>
+          <%= hidden_field_tag("active", true) %>
+          <%= submit_tag("Set as active", class: "btn") %>
+        <% end %>
+      <% end %>
+    </div>
 
     <%= form_with(url: menu_items_path, method: "post", class: "emenu__add") do %>
       <%= hidden_field_tag("menu_id", @menu_id) %>
@@ -14,10 +27,10 @@
         ["Lunch", "Lunch"],
         ["Dinner", "Dinner"]]
       ), class: "emenu__add--input") %>
-      <%= submit_tag("Add", class: "emenu__add--btn") %>
+      <%= submit_tag("Add", class: "btn emenu__add--btn") %>
     <% end %>
 
-    <% Menu.find(@menu_id).menu_items.each do |menu_item| %>
+    <% current_menu.menu_items.each do |menu_item| %>
       <div class="emenu__item">
         <p class="emenu__item--name"><%= menu_item.name %></p>
         <p class="emenu__item--desc"><%= menu_item.description %></p>

@@ -50,16 +50,6 @@
       font-size: 18px;
     }
 
-    &--activelable {
-      font-size: 12px;
-      font-weight: 600;
-      background-color: rgb(255, 193, 193);
-      color: red;
-      padding: 5px 10px;
-      border: solid 2px red;
-      border-radius: 5px;
-    }
-
     &--add {
       margin-top: 30px;
 
@@ -73,21 +63,9 @@
       }
 
       &-btn {
-        text-decoration: none;
-        background-color: #5d15bb;
-        color: white;
         font-size: 14px;
         padding: 10px 20px;
         border: solid 2px #5d15bb;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: all 0.2s ease;
-
-        &:hover,
-        &:focus {
-          transform: scale(1.01) translateY(-1px);
-          box-shadow: 0 5px 10px rgba(#3a3944, 0.2);
-        }
       }
     }
   }

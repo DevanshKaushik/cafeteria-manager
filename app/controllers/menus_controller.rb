@@ -1,5 +1,5 @@
 class MenusController < ApplicationController
-  before_action(only: [:new, :edit]) { check_privilige("owner") }
+  before_action(only: [:new, :edit, :update]) { check_privilige("owner") }
 
   def index
   end
@@ -22,5 +22,13 @@ class MenusController < ApplicationController
   def edit
     @menu_id = params[:id]
     render "edit"
+  end
+
+  def update
+    id = params[:menu_id]
+    if params[:active]
+      Menu.set_active(id)
+    end
+    redirect_to edit_menu_path(id)
   end
 end

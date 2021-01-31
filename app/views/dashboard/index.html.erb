@@ -14,7 +14,7 @@
         </div>
 
         <% if menu.active %>
-          <p class="dashboard__menu--activelable">Active</p>
+          <p class="active-lable">Active</p>
         <% end %>
 
       </div>
@@ -22,7 +22,7 @@
 
     <%= form_with(url: menus_path, method: "post", class: "dashboard__menu--add") do %>
       <%= text_field_tag("name", nil, placeholder: "Menu name", class: "dashboard__menu--add-input") %>
-      <%= submit_tag("Add", class: "dashboard__menu--add-btn") %>
+      <%= submit_tag("Add", class: "btn dashboard__menu--add-btn") %>
     <% end %>
   </section>
 </main>
