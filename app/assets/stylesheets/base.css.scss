@@ -1,0 +1,27 @@
+.btn {
+  text-decoration: none;
+  background-color: #5d15bb;
+  color: white;
+  padding: 10px;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.01) translateY(-1px);
+    box-shadow: 0 5px 10px rgba(#3a3944, 0.2);
+  }
+}
+
+.active-lable {
+  font-size: 12px;
+  font-weight: 600;
+  background-color: rgb(255, 193, 193);
+  color: red;
+  padding: 5px 10px;
+  border: solid 2px red;
+  border-radius: 5px;
+}
