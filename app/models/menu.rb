@@ -7,8 +7,10 @@ class Menu < ActiveRecord::Base
 
   def self.set_active(id)
     active_menu = all.active
-    active_menu.active = false
-    active_menu.save
+    if active_menu
+      active_menu.active = false
+      active_menu.save
+    end
 
     new_menu = find(id)
     new_menu.active = true
