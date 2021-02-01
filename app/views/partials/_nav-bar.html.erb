@@ -1,10 +1,10 @@
 <% if @current_user %>
   <nav class="nav">
-    <div class="nav__logobox"></div>
+    <div class="nav__logobox">Cafe Management System</div>
     <ul class="nav__list">
       <% if show_cart %>
         <li class="nav__list--item">
-          <a href="#" class="nav__list--link">Cart</a>
+          <%= link_to "Cart", orders_path, method: "get", class: "nav__list--link" %>
         </li>
       <% end %>
       <li class="nav__list--item">
