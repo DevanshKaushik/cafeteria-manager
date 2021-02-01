@@ -1,4 +1,5 @@
 class MenuItem < ActiveRecord::Base
+  has_many :order_items
   belongs_to :menu
 
   def self.breakfast

@@ -1,0 +1,5 @@
+<%= render partial: "partials/nav-bar", locals: {show_cart: true} %>
+
+<% @current_user.orders.find_by(date: nil).order_items.each do |order_item| %>
+  <p><%= order_item.menu_item_name %></p>
+<% end %>
