@@ -1,18 +1,20 @@
-<section class="menu__section">
-  <h3 class="menu__section--title"><%= menu_title %></h3>
+<% unless menu_items.empty? %>
+  <section class="menu__section">
+    <h3 class="menu__section--title"><%= menu_title %></h3>
 
-  <div class="menu__items">
-    <% menu_items.each do |menu_item| %>
-      <div class="menu__item">
-        <span class="menu__item--img"></span>
-        <div class="menu__item--details">
-          <div class="menu__item-title">
-            <p class="menu__item-title--name"><%= menu_item.name %></p>
-            <p class="menu__item-title--price">&#x20B9; <%= menu_item.price %></p>
+    <div class="menu__items">
+      <% menu_items.each do |menu_item| %>
+        <div class="menu__item">
+          <span class="menu__item--img"></span>
+          <div class="menu__item--details">
+            <div class="menu__item-title">
+              <p class="menu__item-title--name"><%= menu_item.name %></p>
+              <p class="menu__item-title--price">&#x20B9; <%= menu_item.price %></p>
+            </div>
+            <p class="menu__item--desc"><%= menu_item.description %></p>
           </div>
-          <p class="menu__item--desc"><%= menu_item.description %></p>
         </div>
-      </div>
-    <% end %>
-  </div>
-</section>
+      <% end %>
+    </div>
+  </section>
+<% end %>
