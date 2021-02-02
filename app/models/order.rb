@@ -6,7 +6,7 @@ class Order < ActiveRecord::Base
     current_order = all.find_by(user_id: user_id, date: nil)
     unless current_order
       new_order = new(
-        user_id: current_user.id,
+        user_id: user_id,
         date: nil,
         delivered_at: nil,
       )
