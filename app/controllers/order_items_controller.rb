@@ -1,9 +1,9 @@
 class OrderItemsController < ApplicationController
   def create
-    current_order, err = Order.current_order(current_user.id)
+    current_order = Order.current_order(current_user.id)
 
-    if err
-      flash[:error] = err
+    unless current_order
+      flash[:error] = "There was some error processing your request. Please retry."
       redirect_to "/"
     end
 
