@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   post "/menu_items" => "menu_items#create", as: :menu_items
   post "/order_items" => "order_items#create", as: :order_items
+  delete "/order_item/:id" => "order_items#destroy", as: :order_item
 
   get "/signin" => "sessions#new", as: :new_sessions
   post "/signin" => "sessions#create", as: :sessions

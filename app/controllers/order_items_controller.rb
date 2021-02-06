@@ -24,4 +24,11 @@ class OrderItemsController < ApplicationController
 
     redirect_to "/"
   end
+
+  def destroy
+    order = OrderItem.find(params[:id])
+    order.destroy
+    flash[:notice] = "#{order.menu_item_name} has been removed from your cart"
+    redirect_to orders_path
+  end
 end
