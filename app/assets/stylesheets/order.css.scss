@@ -11,6 +11,8 @@
   }
 
   &__section {
+    width: #{"max(50%, 500px)"};
+
     &--title {
       font-size: 20px;
       color: #5d15bb;
@@ -22,7 +24,6 @@
   }
 
   &__cart {
-    width: unquote("max(50%, 500px)");
     margin-bottom: 100px;
 
     &--item {
@@ -70,8 +71,6 @@
   }
 
   &__previous {
-    width: unquote("max(50%, 500px)");
-
     &--item {
       padding: 40px;
       box-shadow: 0 10px 40px rgba(#3a3944, 0.16);
