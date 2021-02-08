@@ -3,37 +3,14 @@
 <main class="order">
   <h1 class="order__title">Manage your orders</h1>
 
-  <section class="order__cart">
-    <% current_user_id = @current_user.id %>
-    <% current_order_id = Order.current_order(current_user_id).id %>
-    <% current_order_items = Order.current_order(current_user_id).order_items %>
+  <% current_user_id = @current_user.id %>
 
-    <% if current_order_items.empty? %>
-      <h3 class="order__cart--title">Your cart is empty</h3>
+  <%= render partial: "cart", locals: {
+    current_order_id: Order.current_order(current_user_id).id,
+    current_order_items: Order.current_order(current_user_id).order_items,
+  }%>
 
-    <% else %>
-      <h3 class="order__cart--title">Cart</h3>
-
-      <% current_order_items.each do |order_item| %>
-        <div class="order__item">
-          <%= form_with(url: order_item_path(order_item.id), method: "delete") do %>
-            <%= submit_tag("X", class: "active-lable order__item--delete") %>
-          <% end %>
-
-          <p class="order__item--name"><%= order_item.menu_item_name %></p>
-          <p class="order__item--price">&#x20B9; <%= order_item.menu_item_price %></p>
-        </div>
-      <% end %>
-
-      <div class="order__cart--total">
-        <span>Total Cost:</span>
-        <span>&#x20B9; <%= current_order_items.total_price %><span>
-      </div>
-
-      <%= form_with(url: order_path(current_order_id), method: "put") do %>
-        <%= hidden_field_tag("place") %>
-        <%= submit_tag("Place your order", class: "btn order__cart--btn") %>
-      <% end %>
-    <% end %>
-  </section>
+  <%= render partial: "previous", locals: {
+    orders: @current_user.orders,
+  }%>
 </main>
