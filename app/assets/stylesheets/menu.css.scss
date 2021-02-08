@@ -50,25 +50,30 @@
 
     &--details {
       flex: 1;
+      display: flex;
+
+      div:first-child {
+        margin-right: 30px;
+        flex: 1;
+      }
     }
 
-    &-title {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 20px;
+    &--name {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
 
-      &--name {
-        font-size: 18px;
-      }
-
-      &--price {
-        color: #5d15bb;
-      }
+    &--price {
+      color: #5d15bb;
+      text-align: center;
+      margin-bottom: 30px;
     }
 
     &--desc {
       font-size: 14px;
+      line-height: 1.4;
       color: #615f72;
+      text-align: justify;
     }
   }
 }
