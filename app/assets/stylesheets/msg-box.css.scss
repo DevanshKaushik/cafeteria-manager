@@ -8,7 +8,7 @@
   border-radius: 15px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16);
   pointer-events: none;
-  animation: fade-out 4s ease forwards;
+  animation: fade-in 0.2s ease, fade-out 4s ease forwards 0.2s;
 
   p:first-child {
     font-size: 20px;
@@ -26,6 +26,16 @@
 
   &__alert {
     background-color: #e49c16;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }
 
