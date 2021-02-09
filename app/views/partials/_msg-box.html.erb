@@ -1,5 +1,6 @@
 <% if !flash[type.to_s].nil? %>
   <div class="msgbox msgbox__<%= type %>">
-    <%= flash[type.to_s] %>
+    <p><%= type.upcase %></p>
+    <p><%= flash[type.to_s] %></p>
   </div>
 <% end %>

@@ -1,15 +1,20 @@
 .msgbox {
   position: absolute;
   right: 20px;
-  top: 30px;
+  top: 100px;
   max-width: 400px;
   padding: 30px;
   color: white;
   border-radius: 15px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16);
-  animation: fade-out 7s ease forwards;
   pointer-events: none;
-  animation: fade-out 6s ease forwards;
+  animation: fade-out 4s ease forwards;
+
+  p:first-child {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
 
   &__error {
     background-color: #d24747;
