@@ -23,10 +23,13 @@
         <span>&#x20B9; <%= order.order_items.total_price %><span>
       </div>
 
-      <%= form_with(url: order_path(order.id), method: "put") do %>
-        <%= hidden_field_tag("deliver") %>
-        <%= submit_tag("Mark as deivered", class: "btn dashboard__order--btn") %>
-      <% end %>
+      <div class="dashboard__order--btns">
+        <%= form_with(url: order_path(order.id), method: "put") do %>
+          <%= hidden_field_tag("deliver") %>
+          <%= submit_tag("Mark as deivered", class: "btn btn--green dashboard__order--btn") %>
+        <% end %>
+        <%= link_to "View", order_path(order.id), class: "btn dashboard__order--btn" %>
+      </div>
     </div>
   <% end %>
 

@@ -83,6 +83,15 @@
       border-bottom: 1px solid #5d15bb;
     }
 
+    &--btns {
+      display: flex;
+      gap: 30px;
+
+      form {
+        width: 100%;
+      }
+    }
+
     &--btn {
       display: block;
       width: 100%;
