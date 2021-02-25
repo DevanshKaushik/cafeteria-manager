@@ -29,6 +29,6 @@ class OrderItemsController < ApplicationController
     order = OrderItem.find(params[:id])
     order.destroy
     flash[:notice] = "#{order.menu_item_name} has been removed from your cart"
-    redirect_to orders_path
+    redirect_to orders_path(target: "cart")
   end
 end

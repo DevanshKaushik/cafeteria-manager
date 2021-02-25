@@ -1,7 +1,10 @@
-<section class="order__section order__previous">
-  <% unless orders[0..-2].empty? %>
-    <h3 class="order__section--title">Previous Orders</h3>
+<% if orders[0..-2].empty? %>
+  <h1 class="order__title">Woops! Order something delicious today</h1>
+  <img class="empty-state" src=<%= asset_path("EmptyState.svg")%> alt="Food Illustration">
+<% else %>
+  <h1 class="order__title">Your Orders</h1>
 
+  <section class="order__section order__previous">
     <% orders.active_orders.order("date DESC").each do |order|%>
       <div class="order__previous--item">
         <p class="order__previous--id">Order #<%= order.id %></p>
@@ -28,5 +31,5 @@
         </p>
       </div>
     <% end %>
-  <% end %>
-</section>
+  </section>
+<% end %>

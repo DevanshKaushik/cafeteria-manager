@@ -1,7 +1,14 @@
 <% if @current_user.role == "customer"
-      links = [["Cart", orders_path]]
+      links = [
+        ["Cart", orders_path(target: "cart")],
+        ["Orders", orders_path]
+      ]
    else
-      links = [["Dashboard", dashboard_path], ["Cart", orders_path]]
+      links = [
+        ["Dashboard", dashboard_path],
+        ["Cart", orders_path(target: "cart")],
+        ["Orders", orders_path]
+      ]
    end
 %>
 
@@ -11,19 +18,26 @@
 
 <main class="menu">
 
-  <p class="menu__title">Order from the choice of your taste</p>
+  <% if Menu.active.menu_items.empty? %>
+    <p class="menu__title">Uff! Nothing available right now</p>
+    <img class="empty-state" src=<%= asset_path("EmptyState.svg")%> alt="Food Illustration">
+  <% else %>
 
-  <%= render partial: "menu-section", locals: {
-    menu_title: "Breakfast",
-    menu_items: Menu.active.menu_items.breakfast
-  } %>
-  <%= render partial: "menu-section", locals: {
-    menu_title: "Lunch",
-    menu_items: Menu.active.menu_items.lunch
-  } %>
-  <%= render partial: "menu-section", locals: {
-    menu_title: "Dinner",
-    menu_items: Menu.active.menu_items.dinner
-  } %>
+    <p class="menu__title">Order your delicious food</p>
+
+    <%= render partial: "menu-section", locals: {
+      menu_title: "Breakfast",
+      menu_items: Menu.active.menu_items.breakfast
+    } %>
+    <%= render partial: "menu-section", locals: {
+      menu_title: "Lunch",
+      menu_items: Menu.active.menu_items.lunch
+    } %>
+    <%= render partial: "menu-section", locals: {
+      menu_title: "Dinner",
+      menu_items: Menu.active.menu_items.dinner
+    } %>
+
+  <% end %>
 
 </main>

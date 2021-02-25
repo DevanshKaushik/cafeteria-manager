@@ -1,7 +1,21 @@
+<%if @target == "cart"
+    orders_link = ["Orders", orders_path]
+  else
+    orders_link = ["Cart", orders_path(target: "cart")]
+  end
+%>
+
 <% if @current_user.role == "customer"
-      links = [["Menu", menus_path]]
+      links = [
+        ["Menu", menus_path],
+        orders_link,
+      ]
    else
-      links = [["Dashboard", dashboard_path], ["Menu", menus_path]]
+      links = [
+        ["Dashboard", dashboard_path],
+        ["Menu", menus_path],
+        orders_link
+      ]
    end
 %>
 
@@ -10,16 +24,16 @@
 } %>
 
 <main class="order">
-  <h1 class="order__title">Manage your orders</h1>
-
   <% current_user_id = @current_user.id %>
 
-  <%= render partial: "cart", locals: {
-    current_order_id: Order.current_order(current_user_id).id,
-    current_order_items: Order.current_order(current_user_id).order_items,
-  }%>
-
-  <%= render partial: "previous", locals: {
-    orders: @current_user.orders,
-  }%>
+  <% if @target == "cart" %>
+    <%= render partial: "cart", locals: {
+      current_order_id: Order.current_order(current_user_id).id,
+      current_order_items: Order.current_order(current_user_id).order_items,
+    }%>
+  <% else %>
+    <%= render partial: "previous", locals: {
+      orders: @current_user.orders,
+    }%>
+  <% end %>
 </main>

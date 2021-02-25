@@ -1,10 +1,11 @@
-<section class="order__section order__cart">
-  <% if current_order_items.empty? %>
-    <h3 class="order__section--title">Your cart is empty</h3>
+<% if current_order_items.empty? %>
+  <h1 class="order__title">Woops! Add items to your cart</h1>
+  <img class="empty-state" src=<%= asset_path("EmptyState.svg")%> alt="Food Illustration">
 
-  <% else %>
-    <h3 class="order__section--title">Your Cart</h3>
+<% else %>
+  <h1 class="order__title">Your Cart</h1>
 
+  <section class="order__section order__cart">
     <div class="order__cart--item">
       <p class="order__cart--title">Place your order</p>
       <p class="order__cart--itemscount">Items in your cart: <%= current_order_items.count %></p>
@@ -29,5 +30,5 @@
         <%= submit_tag("Place your order", class: "btn order__cart--btn") %>
       <% end %>
     </div>
-  <% end %>
-</section>
+  </section>
+<% end %>
