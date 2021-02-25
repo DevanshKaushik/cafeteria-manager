@@ -4,7 +4,11 @@
   <h3 class="dashboard__order--title">Pending Orders</h3>
   <% orders.active_orders.pending_orders.each do |order| %>
     <div class="order__previous--item">
-      <p class="order__previous--id">Ordered by <%= "#{order.user.first_name} #{order.user.last_name}" %></p>
+      <% if order.user.role == "customer" %>
+        <p class="order__previous--id">Ordered by <%= "#{order.user.first_name} #{order.user.last_name}" %></p>
+      <% else %>
+        <p class="order__previous--id">Walk-in Customer</p>
+      <% end %>
       <p class="order__previous--date">Ordered at <%= order.date.to_formatted_s(:short) %></p>
 
       <% order.order_items.each do |item| %>
@@ -34,10 +38,14 @@
       <p class="order__previous--date">Ordered at <%= order.date.to_formatted_s(:short) %></p>
 
       <div class="order__item">
-          <p class="order__item--name">Ordered By:</p>
-          <p class="order__item--price"><%= "#{order.user.first_name} #{order.user.last_name}" %></p>
-      </div>
+        <p class="order__item--name">Ordered By:</p>
 
+        <% if order.user.role == "customer" %>
+          <p class="order__item--price"><%= "#{order.user.first_name} #{order.user.last_name}" %></p>
+        <% else %>
+          <p class="order__item--price">Walk-in Customer</p>
+        <% end %>
+      </div>
       <div class="order__item">
         <p class="order__item--name">Total Cost:</p>
         <p class="order__item--price">&#x20B9; <%= order.order_items.total_price %><p>
