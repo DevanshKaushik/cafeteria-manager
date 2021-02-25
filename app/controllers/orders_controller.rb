@@ -3,18 +3,21 @@ class OrdersController < ApplicationController
   end
 
   def update
-    order = Order.find(params[:id])
+    id = params[:id]
+    order = Order.find(id)
+    redirect_path = "/"
 
     if params[:place]
+      path = orders_path
       order.date = DateTime.now
       flash[:notice] = "Order placed successfully"
     elsif params[:deliver]
       order.delivered_at = DateTime.now
-      flash[:notice] = "Order marked as delivered"
+      flash[:notice] = "Order##{id} marked as delivered"
     end
 
     if order.save
-      redirect_to orders_path
+      redirect_to redirect_path
     else
       flash[:notice] = nil
       flash[:error] = order.errors.full_messages.join("\n")

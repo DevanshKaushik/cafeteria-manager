@@ -23,4 +23,16 @@ class Order < ActiveRecord::Base
 
     current_order
   end
+
+  def self.active_orders
+    all.where.not(date: nil)
+  end
+
+  def self.pending_orders
+    all.where(delivered_at: nil)
+  end
+
+  def self.delivered_orders
+    all.where.not(delivered_at: nil)
+  end
 end

@@ -6,6 +6,8 @@
       menus: Menu.all,
     }%>
   <% else %>
-    <%= render partial: "clerk" %>
+    <%= render partial: "clerk", locals: {
+      orders: Order.all,
+    } %>
   <% end %>
 </main>

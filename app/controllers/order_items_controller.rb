@@ -22,7 +22,7 @@ class OrderItemsController < ApplicationController
       flash[:error] = new_order_item.errors.full_messages.join("\n")
     end
 
-    redirect_to "/"
+    redirect_to menus_path
   end
 
   def destroy
