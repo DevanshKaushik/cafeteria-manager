@@ -1,4 +1,6 @@
-<%= render partial: "partials/nav-bar", locals: { show_cart: false }%>
+<%= render partial: "partials/nav-bar", locals: {
+  links: [["Dashboard", dashboard_path]]
+ }%>
 
 <% current_menu = Menu.find(@menu_id) %>
 

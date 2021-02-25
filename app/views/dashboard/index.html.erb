@@ -1,4 +1,9 @@
-<%= render partial: "partials/nav-bar", locals: { show_cart: false }%>
+<%= render partial: "partials/nav-bar", locals: {
+  links: [
+    ["Menu", menus_path],
+    ["Cart", orders_path]
+  ]
+ }%>
 
 <main class="dashboard">
   <% if @role == "owner" %>

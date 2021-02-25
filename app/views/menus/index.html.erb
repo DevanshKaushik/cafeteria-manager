@@ -1,4 +1,13 @@
-<%= render partial: "partials/nav-bar", locals: { show_cart: true } %>
+<% if @current_user.role == "customer"
+      links = [["Cart", orders_path]]
+   else
+      links = [["Dashboard", dashboard_path], ["Cart", orders_path]]
+   end
+%>
+
+<%= render partial: "partials/nav-bar", locals: {
+  links: links
+ } %>
 
 <main class="menu">
 

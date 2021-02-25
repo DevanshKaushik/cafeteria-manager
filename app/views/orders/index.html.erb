@@ -1,4 +1,13 @@
-<%= render partial: "partials/nav-bar", locals: {show_cart: false} %>
+<% if @current_user.role == "customer"
+      links = [["Menu", menus_path]]
+   else
+      links = [["Dashboard", dashboard_path], ["Menu", menus_path]]
+   end
+%>
+
+<%= render partial: "partials/nav-bar", locals: {
+  links: links
+} %>
 
 <main class="order">
   <h1 class="order__title">Manage your orders</h1>

@@ -2,9 +2,9 @@
   <nav class="nav">
     <div class="nav__logobox">Cafe Management System</div>
     <ul class="nav__list">
-      <% if show_cart %>
+      <% links.each do |link| %>
         <li class="nav__list--item">
-          <%= link_to "Cart", orders_path, method: "get", class: "nav__list--link" %>
+          <%= link_to link[0], link[1], method: "get", class: "nav__list--link" %>
         </li>
       <% end %>
       <li class="nav__list--item">
