@@ -20,10 +20,26 @@ class OrdersController < ApplicationController
     redirect_path = "/"
 
     if params[:place]
-      path = orders_path
-      order.date = DateTime.now
-      flash[:notice] = "Order placed successfully"
-      redirect_path = orders_path
+      # Checking if the menu item is present
+      items_present = true
+
+      order.order_items.each do |item|
+        unless item.menu_item.menu.active
+          items_present = false
+          break
+        end
+      end
+
+      if items_present
+        order.date = DateTime.now
+        flash[:notice] = "Order placed successfully"
+        redirect_path = orders_path
+      else
+        # Destroying all the order_items and redirecting to the menus path
+        order.order_items.each { |item| item.destroy }
+        flash[:alert] = "Some items in your cart are not available"
+        redirect_path = menus_path
+      end
     elsif params[:deliver]
       order.delivered_at = DateTime.now
       flash[:notice] = "Order##{id} marked as delivered"
@@ -33,6 +49,7 @@ class OrdersController < ApplicationController
       redirect_to redirect_path
     else
       flash[:notice] = nil
+      flash[:alert] = nil
       flash[:error] = order.errors.full_messages.join("\n")
       redirect_to "/"
     end
