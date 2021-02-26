@@ -35,4 +35,9 @@ class Order < ActiveRecord::Base
   def self.delivered_orders
     all.where.not(delivered_at: nil)
   end
+
+  def self.walkin_orders
+    user_ids = User.all.where("role = 'clerk' OR role = 'owner'").map { |user| user.id }.join(", ")
+    all.where("user_id IN (#{user_ids})").order("date DESC")
+  end
 end

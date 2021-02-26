@@ -2,7 +2,7 @@
   <h1 class="order__title">Woops! Order something delicious today</h1>
   <img class="empty-state" src=<%= asset_path("EmptyState.svg")%> alt="Food Illustration">
 <% else %>
-  <h1 class="order__title">Your Orders</h1>
+  <h1 class="order__title"><%= title %></h1>
 
   <section class="order__section order__previous">
     <% orders.active_orders.order("date DESC").each do |order|%>

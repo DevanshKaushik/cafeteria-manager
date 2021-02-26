@@ -82,6 +82,10 @@
       font-size: 18px;
       font-weight: bold;
       margin-bottom: 10px;
+
+      a {
+        color: #5d15bb;
+      }
     }
 
     &--date {
@@ -129,7 +133,8 @@
       flex: 1;
     }
 
-    &--price {
+    &--price,
+    &--price a {
       color: #5d15bb;
     }
   }
@@ -144,6 +149,10 @@
 
     &--user {
       margin: 15px 0;
+
+      a {
+        color: #5d15bb;
+      }
     }
 
     &--status {

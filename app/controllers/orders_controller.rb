@@ -3,6 +3,11 @@ class OrdersController < ApplicationController
 
   def index
     @target = params[:target]
+    @user_id = params[:user_id]
+
+    if @user_id
+      check_privilige("clerk", "owner")
+    end
   end
 
   def show

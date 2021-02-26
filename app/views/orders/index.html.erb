@@ -1,20 +1,22 @@
 <%if @target == "cart"
-    orders_link = ["Orders", orders_path]
+    orders_link = [["Orders", orders_path]]
+  elsif @user_id
+    orders_link = [["Cart", orders_path(target: "cart")], ["Orders", orders_path]]
   else
-    orders_link = ["Cart", orders_path(target: "cart")]
+    orders_link = [["Cart", orders_path(target: "cart")]]
   end
 %>
 
 <% if @current_user.role == "customer"
       links = [
         ["Menu", menus_path],
-        orders_link,
+        *orders_link,
       ]
    else
       links = [
         ["Dashboard", dashboard_path],
         ["Menu", menus_path],
-        orders_link
+        *orders_link
       ]
    end
 %>
@@ -32,8 +34,30 @@
       current_order_items: Order.current_order(current_user_id).order_items,
     }%>
   <% else %>
-    <%= render partial: "previous", locals: {
-      orders: @current_user.orders,
-    }%>
+
+    <% if @user_id %>
+      <% user = User.find_by(id: @user_id) %>
+    <% end %>
+
+    <% if user %>
+
+      <% user_name = user.first_name + " " + user.last_name %>
+      <% orders = user.orders %>
+
+      <% if user.role == "clerk" or user.role == "owner" %>
+        <% user_name = "Walk-in Customer" %>
+        <% orders = Order.walkin_orders %>
+      <% end %>
+
+      <%= render partial: "previous", locals: {
+        orders: orders,
+        title: "Orders by #{user_name}",
+      }%>
+    <% else %>
+      <%= render partial: "previous", locals: {
+        orders: @current_user.orders,
+        title: "Your Orders",
+      }%>
+    <% end %>
   <% end %>
 </main>
