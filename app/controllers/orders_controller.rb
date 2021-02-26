@@ -1,6 +1,12 @@
 class OrdersController < ApplicationController
+  before_action(only: :show) { check_privilige("clerk", "owner") }
+
   def index
     @target = params[:target]
+  end
+
+  def show
+    @id = params[:id]
   end
 
   def update

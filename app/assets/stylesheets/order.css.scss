@@ -133,4 +133,46 @@
       color: #5d15bb;
     }
   }
+
+  &__invoice {
+    &--legend {
+      font-size: 15px;
+      font-weight: bold;
+      margin-top: 40px;
+      margin-bottom: 30px;
+    }
+
+    &--user {
+      margin: 15px 0;
+    }
+
+    &--status {
+      &-delivered,
+      &-pending {
+        margin: 15px 0;
+        font-weight: bold;
+      }
+
+      &-delivered {
+        color: rgb(39, 170, 94);
+      }
+
+      &-pending {
+        color: rgb(226, 153, 58);
+      }
+    }
+
+    &--total {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: solid 1px #5d15bb;
+
+      span {
+        color: #5d15bb;
+        font-weight: bold;
+      }
+    }
+  }
 }

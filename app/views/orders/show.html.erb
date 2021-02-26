@@ -1,0 +1,70 @@
+<%= render partial: "partials/nav-bar", locals: {
+  links: [
+    ["Dashboard", dashboard_path],
+    ["Menu", menus_path],
+    ["Orders", orders_path],
+    ["Cart", orders_path(target: "cart")],
+  ]
+} %>
+
+<main class="order">
+
+  <% order = Order.find_by(id: @id) %>
+
+  <% if order.nil? %>
+    <h1 class="order__title">Uff! Nothing found</h1>
+    <img class="empty-state" src=<%= asset_path("EmptyState.svg")%> alt="Food Illustration">
+
+  <% else %>
+    <h1 class="order__title">Invoice</h1>
+
+    <section class="order__section order__previous">
+      <div class="order__previous--item">
+        <p class="order__previous--id">Order #<%= order.id %></p>
+        <p class="order__previous--date">Ordered at <%= order.date.to_formatted_s(:short) %></p>
+
+        <p class="order__invoice--legend">User details:</p>
+
+        <p class="order__invoice--user">
+          <% if order.user.role == "customer" %>
+            Ordered by: <%= "#{order.user.first_name} #{order.user.last_name}" %>
+          <% else %>
+            Ordered by: Walk-in Customer
+          <% end %>
+        </p>
+
+        <p class="order__invoice--user">
+          <% user_email = order.user.email %>
+          User email: <%= link_to user_email, "mailto:#{user_email}" %>
+        </p>
+
+        <% order_delivered = order.delivered_at.nil? %>
+
+        <p class="order__invoice--user">
+          <% if order_delivered %>
+            <span>Status: </span>
+            <span class="order__invoice--status-pending">Pending delivery</span>
+          <% else %>
+            <span>Status: </span>
+            <span class="order__invoice--status-delivered">Delivered (<%= order.delivered_at.to_formatted_s(:short) %>)</span>
+          <% end %>
+        </p>
+
+        <p class="order__invoice--legend">Ordered items:</p>
+
+        <% order.order_items.each do |item| %>
+          <div class="order__item">
+              <p class="order__item--name"><%= item.menu_item_name %></p>
+              <p class="order__item--price">&#x20B9; <%= item.menu_item_price %></p>
+          </div>
+        <% end %>
+
+        <div class="order__invoice--total">
+          <span>Total Cost:</span>
+          <span>&#x20B9; <%= order.order_items.total_price %><span>
+        </div>
+
+      </div>
+    </section>
+  <% end %>
+</main>
