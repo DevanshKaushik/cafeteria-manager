@@ -6,3 +6,46 @@
     ["Orders", orders_path]
   ]
 }%>
+
+<main class="user">
+  <% if User.all.empty? %>
+    <h1 class="user__title">Uff! No user found</h1>
+    <img class="empty-state" src=<%= asset_path("EmptyState.svg")%> alt="Food Illustration">
+  <% else %>
+    <h1 class="user__title">Manage all users</h1>
+
+    <section class="menu__section">
+
+      <%= form_with(url: users_path, method: "post", class: "user__add") do %>
+        <%= text_field_tag("first_name", nil, placeholder: "First Name", class: "emenu__add--input") %>
+        <%= text_field_tag("last_name", nil, placeholder: "Last Name", class: "emenu__add--input") %>
+        <%= email_field_tag("email", nil, placeholder: "Email", class: "emenu__add--input") %>
+        <%= password_field_tag("password", nil, placeholder: "Password", class: "emenu__add--input") %>
+
+        <%= select_tag("role", options_for_select([
+          ["Customer", "customer"],
+          ["Clerk", "clerk"],
+          ["Owner", "owner"]],
+        ), class: "emenu__add--input") %>
+        <%= submit_tag("Create", class: "btn emenu__add--btn") %>
+      <% end %>
+
+      <% User.all.each do |user| %>
+        <div class="user__item">
+          <%= link_to "#{user.id}.", user_path(user.id), class: "user__item--detail"%>
+          <p class="user__item--detail"><%= user.first_name %> <%= user.last_name %></p>
+          <p class="user__item--detail"><%= user.email %></p>
+          <p class="user__item--detail"><%= user.role.capitalize %></p>
+          <div>
+            <%= link_to "View Orders", orders_path(user_id: user.id), class: "btn user__item--btn" %>
+            <%= link_to "Edit User", edit_user_path(user.id), class: "btn btn--green user__item--btn"%>
+            <% unless user.role == "owner" %>
+              <%= link_to "Delete User", user_path(user.id), method: "delete", class: "btn btn--red user__item--btn", data: {confirm: "Are you sure to remove this user?"} %>
+            <% end %>
+          </div>
+        </div>
+    <% end %>
+
+    </section>
+  <% end %>
+</main>
