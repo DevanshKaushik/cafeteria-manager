@@ -10,6 +10,7 @@
   <% if @role == "owner" %>
     <%= render partial: "owner", locals: {
       menus: Menu.all.order("created_at"),
+      users: User.not_owner.order("role")
     }%>
   <% else %>
     <%= render partial: "clerk", locals: {

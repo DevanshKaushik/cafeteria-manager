@@ -7,11 +7,6 @@
 
       <div class="dashboard__menu--actions">
         <%= link_to "X", menu_path(menu.id), method: "delete", class: "delete-btn", data: {confirm: "Are you sure to delete this menu?"} %>
-        <% if false %>
-          <%= link_to edit_menu_path(menu.id), class: "dashboard__menu--edit" do %>
-            <%= image_tag(asset_path("edit.png"), alt: "Edit Menu") %>
-          <% end %>
-        <% end %>
         <%= link_to menu.name, edit_menu_path(menu.id), class: "dashboard__menu--name" %>
       </div>
 
@@ -26,4 +21,22 @@
     <%= text_field_tag("name", nil, placeholder: "Menu name", class: "dashboard__menu--add-input") %>
     <%= submit_tag("Add", class: "btn dashboard__menu--add-btn") %>
   <% end %>
+</section>
+
+<section class="dashboard__section dashboard__user">
+  <h3 class="dashboard__section--title">Manage users</h3>
+  <% users.each do |user| %>
+    <div class="dashboard__menu--item">
+
+      <div class="dashboard__menu--actions">
+        <%= link_to "X", user_path(user.id), method: "delete", class: "delete-btn", data: {confirm: "Are you sure to remove this user?"} %>
+        <%= link_to "#{user.first_name} #{user.last_name}", user_path(user.id), class: "dashboard__menu--name" %>
+      </div>
+
+      <p class="active-lable"><%= user.role.capitalize %></p>
+
+    </div>
+  <% end %>
+
+  <%= link_to "Manage all users", users_path, class: "btn dashboard__user--btn" %>
 </section>

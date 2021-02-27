@@ -1,0 +1,8 @@
+<%= render partial: "partials/nav-bar", locals: {
+  links: [
+    ["Dashboard", dashboard_path],
+    ["Menu", menus_path],
+    ["Cart", orders_path(target: "cart")],
+    ["Orders", orders_path]
+  ]
+}%>

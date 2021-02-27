@@ -1,0 +1,51 @@
+<%= render partial: "partials/nav-bar", locals: {
+  links: [
+    ["Dashboard", dashboard_path],
+    ["Menu", menus_path],
+    ["Cart", orders_path(target: "cart")],
+    ["Orders", orders_path]
+  ]
+}%>
+
+<% user = User.find_by(id: @id) %>
+
+<main class="user">
+  <% if !user %>
+    <h1 class="user__title">No user found</h1>
+    <img class="empty-state" src=<%= asset_path("EmptyState.svg")%> alt="Food Illustration">
+  <% else %>
+    <h1 class="user__title">Update user details</h1>
+
+    <div class="users">
+      <section class="users__form">
+        <%= form_with(url: user_path(@id), method: "put") do |form| %>
+          <div class="users__form--section">
+            <p class="users__form--lable">First name</p>
+            <%= form.text_field :first_name, class: "users__form--input", value: user.first_name %>
+          </div>
+          <div class="users__form--section">
+            <p class="users__form--lable">Last name</p>
+            <%= form.text_field :last_name, class: "users__form--input", value: user.last_name %>
+          </div>
+          <div class="users__form--section">
+            <p class="users__form--lable">Email</p>
+            <%= form.email_field :email, class: "users__form--input", value: user.email %>
+          </div>
+          <div class="users__form--section">
+            <p class="users__form--lable">Role</p>
+            <%= form.select "role", options_for_select([
+              ["Clerk", "clerk"],
+              ["Customer", "customer"],
+              ["Owner", "owner"]],
+              user.role
+            ), class: "users__form--input" %>
+          </div>
+          <div class="users__form--section">
+            <%= form.submit "Update", class: "btn users__form--btn" %>
+          </div>
+        <% end %>
+      </section>
+    </div>
+  <% end %>
+
+</main>
