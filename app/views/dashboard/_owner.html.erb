@@ -40,3 +40,23 @@
 
   <%= link_to "Manage all users", users_path, class: "btn dashboard__user--btn" %>
 </section>
+
+<section class="dashboard__section dashboard__user">
+  <h3 class="dashboard__section--title">Check reports</h3>
+
+  <div class="dashboard__menu--item">
+    <div class="dashboard__menu--actions">
+      <p class="dashboard__menu--name">Today's Income</p>
+    </div>
+    <%= Order.today_income %>
+  </div>
+
+  <div class="dashboard__menu--item">
+    <div class="dashboard__menu--actions">
+      <p class="dashboard__menu--name">Total Orders Today</p>
+    </div>
+    <%= Order.today_order.count %>
+  </div>
+
+  <%= link_to "View all reports", reports_path, class: "btn dashboard__user--btn" %>
+</section>

@@ -1,0 +1,76 @@
+<%= render partial: "partials/nav-bar", locals: {
+  links: [
+    ["Dashboard", dashboard_path],
+    ["Menu", menus_path],
+    ["Cart", orders_path(target: "cart")],
+    ["Orders", orders_path]
+  ]
+}%>
+
+<main class="dashboard__order">
+
+  <h1 class="dashboard__order--title">Reports</h1>
+
+  <div class="order__previous--item">
+    <p class="order__previous--id">Quick Insights</p>
+    <p class="order__previous--date">Date: <%= DateTime.now.to_formatted_s(:short) %></p>
+
+    <div class="order__item">
+      <p class="order__item--name">Today's Income:</p>
+      <p class="order__item--price"><%= Order.today_income %></p>
+    </div>
+
+    <div class="order__item">
+      <p class="order__item--name">Total Orders Today:</p>
+      <p class="order__item--price"><%= Order.today_order.count %></p>
+    </div>
+
+    <div class="order__item">
+      <p class="order__item--name">Total Delivered Orders:</p>
+      <p class="order__item--price"><%= Order.today_order.delivered_orders.count %></p>
+    </div>
+
+    <div class="order__item">
+      <p class="order__item--name">Total Pending Orders:</p>
+      <p class="order__item--price"><%= Order.today_order.pending_orders.count %></p>
+    </div>
+
+    <div class="order__item">
+      <p class="order__item--name">Total Offline Orders:</p>
+      <p class="order__item--price"><%= Order.today_order.walkin_orders.count %></p>
+    </div>
+
+  </div>
+
+  <h1 class="dashboard__order--title">Invoices</h1>
+
+  <% orders = Order.all %>
+
+  <% orders.delivered_orders.order("date DESC").each do |order| %>
+    <div class="order__previous--item">
+      <p class="order__previous--id">Order#<%= order.id %></p>
+      <p class="order__previous--date">Ordered at <%= order.date.to_formatted_s(:short) %></p>
+
+      <div class="order__item">
+        <p class="order__item--name">Ordered By:</p>
+
+        <% if order.user.role == "customer" %>
+          <p class="order__item--price">
+            <%= link_to "#{order.user.first_name} #{order.user.last_name}", orders_path(user_id: order.user.id) %>
+          </p>
+        <% else %>
+          <p class="order__item--price">
+            <%= link_to "Walk-in Customer", orders_path(user_id: order.user.id) %>
+          </p>
+        <% end %>
+      </div>
+      <div class="order__item">
+        <p class="order__item--name">Total Cost:</p>
+        <p class="order__item--price">&#x20B9; <%= order.order_items.total_price %><p>
+      </div>
+
+      <%= link_to "View", order_path(order.id), class: "btn dashboard__order--btn" %>
+    </div>
+  <% end %>
+
+<main>
