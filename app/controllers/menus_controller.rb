@@ -46,6 +46,7 @@ class MenusController < ApplicationController
     if menu.active
       flash[:error] = "Active menu cannot be deleted"
     else
+      menu.menu_items.each { |item| item.destroy }
       menu.destroy
       flash[:notice] = "#{menu.name} has been deleted"
     end

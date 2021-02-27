@@ -24,7 +24,7 @@ class OrdersController < ApplicationController
       items_present = true
 
       order.order_items.each do |item|
-        unless item.menu_item.menu.active
+        unless item.menu_item && item.menu_item.menu.active
           items_present = false
           break
         end
