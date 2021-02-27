@@ -121,11 +121,16 @@
   &__item {
     width: 100%;
     display: grid;
-    grid-template-columns: 20% 50% 15% 15%;
+    grid-template-columns: 20% 0% 20% 30% 15% 15%;
     align-items: center;
     padding: 20px 50px;
     box-shadow: 0 10px 40px rgba(#3a3944, 0.16);
     margin-bottom: 20px;
+
+    div {
+      display: flex;
+      align-items: center;
+    }
 
     &--name {
       padding-right: 10px;
@@ -140,6 +145,30 @@
     &--price,
     &--category {
       text-align: center;
+    }
+
+    &--edit,
+    &--del {
+      transition: all 0.2s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+      }
+    }
+
+    &--edit {
+      cursor: pointer;
+      width: 38px;
+      padding: 10px;
+    }
+
+    &--input {
+      margin-right: 20px;
+      padding: 10px;
+      border-radius: 5px;
+      border: solid 2px #c9c9c9;
+      color: #3a3944;
+      outline: none;
     }
   }
 }

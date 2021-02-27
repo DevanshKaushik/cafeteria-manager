@@ -41,12 +41,28 @@
       <%= submit_tag("Add", class: "btn emenu__add--btn") %>
     <% end %>
 
-    <% current_menu.menu_items.each do |menu_item| %>
-      <div class="emenu__item">
-        <p class="emenu__item--name"><%= menu_item.name %></p>
-        <p class="emenu__item--desc"><%= menu_item.description %></p>
-        <p class="emenu__item--price">&#x20B9; <%= menu_item.price %></p>
-        <p class="emenu__item--category"><%= menu_item.category %></p>
+    <% current_menu.menu_items.order("created_at").each do |menu_item| %>
+      <div class="emenu__item" id="menu_item_<%= menu_item.id %>">
+        <div>
+          <%= form_with(url: destroy_menu_item_path(menu_item.id), method: "delete" ) do %>
+            <%= hidden_field_tag("menu_id", @menu_id) %>
+            <%= submit_tag("X", class: "delete-btn emenu__item--del" ) %>
+          <% end %>
+
+          <%= image_tag asset_path("edit.svg"), class: "emenu__item--edit", data: {id: menu_item.id, tick_icon: asset_path("tick.png"), edit_icon: asset_path("edit.svg")}%>
+        </div>
+
+        <%= form_with(url: update_menu_item_path(menu_item.id), method: "put", id: "edit_menu_item_form_#{menu_item.id}" ) do %>
+          <%= hidden_field_tag("name", menu_item.name, id: "hidden_name_#{menu_item.id}") %>
+          <%= hidden_field_tag("desc", menu_item.description, id: "hidden_desc_#{menu_item.id}") %>
+          <%= hidden_field_tag("price", menu_item.price, id: "hidden_price_#{menu_item.id}") %>
+          <%= hidden_field_tag("category", menu_item.category, id: "hidden_category_#{menu_item.id}") %>
+        <% end %>
+
+        <p class="emenu__item--name" id="menu_item_<%= menu_item.id %>_name"><%= menu_item.name %></p>
+        <p class="emenu__item--desc" id="menu_item_<%= menu_item.id %>_desc"><%= menu_item.description %></p>
+        <p class="emenu__item--price" id="menu_item_<%= menu_item.id %>_price">&#x20B9; <%= menu_item.price %></p>
+        <p class="emenu__item--category" id="menu_item_<%= menu_item.id %>_category"><%= menu_item.category %></p>
       </div>
     <% end %>
 
