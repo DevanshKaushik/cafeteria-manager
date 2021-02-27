@@ -9,7 +9,7 @@
 <main class="dashboard">
   <% if @role == "owner" %>
     <%= render partial: "owner", locals: {
-      menus: Menu.all,
+      menus: Menu.all.order("created_at"),
     }%>
   <% else %>
     <%= render partial: "clerk", locals: {

@@ -30,6 +30,24 @@
   border-radius: 5px;
 }
 
+.delete-btn {
+  font-size: 12px;
+  font-weight: 600;
+  color: red;
+  padding: 5px 10px;
+  border: solid 2px red;
+  border-radius: 5px;
+  margin-right: 20px;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+
+  &:hover {
+    background-color: rgb(255, 193, 193);
+  }
+}
+
 .empty-state {
   margin: 0 auto;
   height: 500px;

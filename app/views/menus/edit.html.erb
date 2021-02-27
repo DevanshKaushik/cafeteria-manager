@@ -14,12 +14,14 @@
 
   <section class="menu__section">
     <div class="emenu__name">
-      <span><%= current_menu.name %></span>
+      <%= form_with(url: menu_path(current_menu.id), method: "put", id: "edit_menu_form") do %>
+        <%= hidden_field_tag("menu_name", current_menu.name) %>
+        <span contenteditable="true" id="edit_menu_name"><%= current_menu.name %></span>
+      <% end %>
       <% if current_menu.active %>
         <p class="active-lable">Active</p>
       <% else %>
-        <%= form_with(url: menu_path, method: "put") do %>
-          <%= hidden_field_tag("menu_id", @menu_id) %>
+        <%= form_with(url: menu_path(current_menu.id), method: "put", data: {confirm: "Are you sure to set this menu as active menu?"}) do %>
           <%= hidden_field_tag("active", true) %>
           <%= submit_tag("Set as active", class: "btn") %>
         <% end %>
@@ -50,3 +52,5 @@
 
   </section>
 </main>
+
+<%= javascript_pack_tag 'edit_menu' %>

@@ -118,17 +118,6 @@
       margin-bottom: 25px;
     }
 
-    &--delete {
-      margin-right: 20px;
-      background-color: white;
-      cursor: pointer;
-      transition: all 0.2s ease;
-
-      &:hover {
-        background-color: rgb(255, 193, 193);
-      }
-    }
-
     &--name {
       flex: 1;
     }

@@ -110,6 +110,11 @@
       font-weight: 600;
       color: #5d15bb;
       margin-right: 10px;
+      cursor: pointer;
+
+      &:focus {
+        font-weight: 400;
+      }
     }
   }
 

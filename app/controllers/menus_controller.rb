@@ -1,5 +1,5 @@
 class MenusController < ApplicationController
-  before_action(only: [:new, :edit, :update]) { check_privilige("owner") }
+  before_action(only: [:new, :edit, :update, :destroy]) { check_privilige("owner") }
 
   def index
   end
@@ -11,7 +11,6 @@ class MenusController < ApplicationController
     )
 
     if new_menu.save
-      Menu.set_active(new_menu.id)
       redirect_to edit_menu_path(new_menu.id)
     else
       flash[:error] = new_menu.errors.full_messages.join("\n")
@@ -25,10 +24,32 @@ class MenusController < ApplicationController
   end
 
   def update
-    id = params[:menu_id]
+    id = params[:id]
+
     if params[:active]
       Menu.set_active(id)
+    elsif params[:menu_name]
+      menu = Menu.find(id)
+      menu.name = params[:menu_name]
+
+      unless menu.save
+        flash[:error] = menu.errors.full_messages.join("\n")
+      end
     end
+
     redirect_to edit_menu_path(id)
+  end
+
+  def destroy
+    menu = Menu.find(params[:id])
+
+    if menu.active
+      flash[:error] = "Active menu cannot be deleted"
+    else
+      menu.destroy
+      flash[:notice] = "#{menu.name} has been deleted"
+    end
+
+    redirect_to "/"
   end
 end
