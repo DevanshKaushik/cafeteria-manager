@@ -57,3 +57,41 @@
   margin: 0 auto;
   height: 500px;
 }
+
+.logo {
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  font-weight: bold;
+  font-size: 30px;
+  font-style: italic;
+  color: #6326b3;
+
+  &--white {
+    color: white;
+
+    &::after,
+    &::before {
+      background-color: white !important;
+    }
+  }
+
+  &::after,
+  &::before {
+    content: "";
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    background-color: #6326b3;
+    display: inline-block;
+    position: absolute;
+    right: -15px;
+    bottom: 5px;
+  }
+
+  &::before {
+    transform: scale(2);
+    opacity: 0.2;
+    animation: ripple 1.5s ease-in infinite;
+  }
+}
