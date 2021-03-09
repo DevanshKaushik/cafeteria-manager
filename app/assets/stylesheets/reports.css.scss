@@ -1,0 +1,19 @@
+.reports {
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &:not(:last-child) {
+      margin-bottom: 25px;
+    }
+
+    &--left {
+      flex: 1;
+    }
+
+    &--right {
+      color: #5d15bb;
+    }
+  }
+}

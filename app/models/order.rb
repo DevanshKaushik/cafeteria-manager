@@ -41,11 +41,39 @@ class Order < ActiveRecord::Base
     all.where("user_id IN (#{user_ids})").order("date DESC")
   end
 
-  def self.today_income
+  def self.today_revenue
     today_order.map { |order| order.order_items.total_price }.sum
   end
 
   def self.today_order
     all.where("date BETWEEN ? AND ?", DateTime.now.beginning_of_day, DateTime.now.end_of_day)
+  end
+
+  def self.max_orders
+    orders = today_order
+    max_orders = 0
+
+    (0..14).to_a.each do |index|
+      total_orders = where("date BETWEEN ? AND ?", DateTime.now.beginning_of_day - index, DateTime.now.end_of_day - index)
+      if total_orders.count > max_orders
+        max_orders = total_orders.count
+        orders = total_orders
+      end
+    end
+
+    orders
+  end
+
+  def self.max_order_date
+    max_orders.first.date.to_date
+  end
+
+  def self.max_revenue
+    max_orders.map { |order| order.order_items.total_price }.sum
+  end
+
+  def self.total_revenue
+    orders = where("date BETWEEN ? AND ?", DateTime.now.beginning_of_day - 15, DateTime.now.end_of_day)
+    orders.map { |order| order.order_items.total_price }.sum
   end
 end
