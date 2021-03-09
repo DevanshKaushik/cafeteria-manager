@@ -3,28 +3,28 @@
 <section class="dashboard__order">
   <h3 class="dashboard__order--title">Pending Orders</h3>
   <% orders.active_orders.pending_orders.each do |order| %>
-    <div class="order__previous--item">
+    <div class="card">
       <% if order.user.role == "customer" %>
-        <p class="order__previous--id">
+        <p class="card__title">
           Ordered by
           <%= link_to "#{order.user.first_name} #{order.user.last_name}", orders_path(user_id: order.user.id) %>
         </p>
       <% else %>
-        <p class="order__previous--id">
+        <p class="card__title">
           Ordered by
           <%= link_to "Walk-in Customer", orders_path(user_id: order.user.id) %>
         </p>
       <% end %>
-      <p class="order__previous--date">Ordered at <%= order.date.to_formatted_s(:short) %></p>
+      <p class="card__sub-title">Ordered at <%= order.date.to_formatted_s(:short) %></p>
 
       <% order.order_items.each do |item| %>
-        <div class="order__item">
-            <p class="order__item--name"><%= item.menu_item_name %></p>
-            <p class="order__item--price">&#x20B9; <%= item.menu_item_price %></p>
+        <div class="reports__item">
+            <p class="reports__item--left"><%= item.menu_item_name %></p>
+            <p class="reports__item--right">&#x20B9; <%= item.menu_item_price %></p>
         </div>
       <% end %>
 
-      <div class="order__cart--total">
+      <div class="reports__total">
         <span>Total Cost:</span>
         <span>&#x20B9; <%= order.order_items.total_price %><span>
       </div>
@@ -42,26 +42,26 @@
   <h3 class="dashboard__order--title">Delivered Orders</h3>
 
   <% orders.delivered_orders.order("date DESC").each do |order| %>
-    <div class="order__previous--item">
-      <p class="order__previous--id">Order#<%= order.id %></p>
-      <p class="order__previous--date">Ordered at <%= order.date.to_formatted_s(:short) %></p>
+    <div class="card">
+      <p class="card__title">Order#<%= order.id %></p>
+      <p class="card__sub-title">Ordered at <%= order.date.to_formatted_s(:short) %></p>
 
-      <div class="order__item">
-        <p class="order__item--name">Ordered By:</p>
+      <div class="reports__item">
+        <p class="reports__item--left">Ordered By:</p>
 
         <% if order.user.role == "customer" %>
-          <p class="order__item--price">
+          <p class="reports__item--right">
             <%= link_to "#{order.user.first_name} #{order.user.last_name}", orders_path(user_id: order.user.id) %>
           </p>
         <% else %>
-          <p class="order__item--price">
+          <p class="reports__item--right">
             <%= link_to "Walk-in Customer", orders_path(user_id: order.user.id) %>
           </p>
         <% end %>
       </div>
-      <div class="order__item">
-        <p class="order__item--name">Total Cost:</p>
-        <p class="order__item--price">&#x20B9; <%= order.order_items.total_price %><p>
+      <div class="reports__item">
+        <p class="reports__item--left">Total Cost:</p>
+        <p class="reports__item--right">&#x20B9; <%= order.order_items.total_price %><p>
       </div>
 
       <%= link_to "View", order_path(order.id), class: "btn dashboard__order--btn" %>

@@ -33,7 +33,7 @@
         <%= link_to "#{user.first_name} #{user.last_name}", user_path(user.id), class: "dashboard__menu--name" %>
       </div>
 
-      <p class="active-lable"><%= user.role.capitalize %></p>
+      <p class="active-lable active-lable--blue"><%= user.role.capitalize %></p>
 
     </div>
   <% end %>
@@ -44,18 +44,32 @@
 <section class="dashboard__section dashboard__user">
   <h3 class="dashboard__section--title">Check reports</h3>
 
-  <div class="dashboard__menu--item">
+  <div class="dashboard__menu--item non-hover">
     <div class="dashboard__menu--actions">
-      <p class="dashboard__menu--name">Today's Income</p>
+      <p class="dashboard__menu--name non-hover">Today's revenue:</p>
     </div>
-    <%= Order.today_income %>
+    &#x20B9; <%= Order.today_revenue %>
   </div>
 
-  <div class="dashboard__menu--item">
+  <div class="dashboard__menu--item non-hover">
     <div class="dashboard__menu--actions">
-      <p class="dashboard__menu--name">Total Orders Today</p>
+      <p class="dashboard__menu--name non-hover">Max revenue (in last 15 days):</p>
+    </div>
+    &#x20B9; <%= Order.max_revenue %>
+  </div>
+
+  <div class="dashboard__menu--item non-hover">
+    <div class="dashboard__menu--actions">
+      <p class="dashboard__menu--name non-hover">Today's orders:</p>
     </div>
     <%= Order.today_order.count %>
+  </div>
+
+  <div class="dashboard__menu--item non-hover">
+    <div class="dashboard__menu--actions">
+      <p class="dashboard__menu--name non-hover">Max orders on (in last 15 days):</p>
+    </div>
+    <%= Order.max_order_date.to_formatted_s(:long) %>
   </div>
 
   <%= link_to "View all reports", reports_path, class: "btn dashboard__user--btn" %>

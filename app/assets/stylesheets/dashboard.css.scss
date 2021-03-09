@@ -33,6 +33,12 @@
       border-radius: 5px;
       transition: all 0.2s ease;
 
+      &.non-hover {
+        &:hover {
+          background-color: white !important;
+        }
+      }
+
       &:hover {
         background-color: #f6f1ff;
       }
@@ -63,6 +69,12 @@
 
       &:hover {
         font-weight: bold;
+      }
+
+      &.non-hover {
+        &:hover {
+          font-weight: normal !important;
+        }
       }
     }
 

@@ -16,4 +16,15 @@
       color: #5d15bb;
     }
   }
+
+  &__total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+
+    span {
+      color: #5d15bb;
+      font-weight: bold;
+    }
+  }
 }

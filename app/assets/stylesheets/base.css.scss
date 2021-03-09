@@ -32,6 +32,12 @@
   padding: 5px 10px;
   border: solid 2px red;
   border-radius: 5px;
+
+  &--blue {
+    background-color: #ede0ff;
+    color: #5d15bb;
+    border: solid 2px #5d15bb;
+  }
 }
 
 .delete-btn {
