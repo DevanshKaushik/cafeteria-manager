@@ -17,7 +17,7 @@ class MenuItemsController < ApplicationController
       menu_id: params[:menu_id],
     )
     unless new_menu_item.save
-      flash[:error] = new_menu_item.errors.full_messages.join("\n")
+      flash[:error] = new_menu_item.errors.full_messages.join(", ")
     end
 
     redirect_to edit_menu_path(params[:menu_id])
@@ -33,7 +33,7 @@ class MenuItemsController < ApplicationController
     if menu_item.save
       flash[:notice] = "Menu item: #{menu_item.name}, updated successfully"
     else
-      flash[:error] = menu_item.errors.full_messages.join("\n")
+      flash[:error] = menu_item.errors.full_messages.join(", ")
     end
 
     redirect_to edit_menu_path(menu_item.menu.id)

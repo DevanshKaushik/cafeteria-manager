@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     user.role = role
 
     if !user.save
-      flash[:error] = user.errors.full_messages.join("\n")
+      flash[:error] = user.errors.full_messages.join(", ")
     end
 
     redirect_to "/"

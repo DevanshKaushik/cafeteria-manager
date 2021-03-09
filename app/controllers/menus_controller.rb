@@ -13,7 +13,7 @@ class MenusController < ApplicationController
     if new_menu.save
       redirect_to edit_menu_path(new_menu.id)
     else
-      flash[:error] = new_menu.errors.full_messages.join("\n")
+      flash[:error] = new_menu.errors.full_messages.join(", ")
       redirect_to "/"
     end
   end
@@ -33,7 +33,7 @@ class MenusController < ApplicationController
       menu.name = params[:menu_name]
 
       unless menu.save
-        flash[:error] = menu.errors.full_messages.join("\n")
+        flash[:error] = menu.errors.full_messages.join(", ")
       end
     end
 

@@ -50,7 +50,7 @@ class OrdersController < ApplicationController
     else
       flash[:notice] = nil
       flash[:alert] = nil
-      flash[:error] = order.errors.full_messages.join("\n")
+      flash[:error] = order.errors.full_messages.join(", ")
       redirect_to "/"
     end
   end

@@ -19,7 +19,7 @@ class OrderItemsController < ApplicationController
     if new_order_item.save
       flash[:notice] = "#{menu_item.name} has been added to the cart"
     else
-      flash[:error] = new_order_item.errors.full_messages.join("\n")
+      flash[:error] = new_order_item.errors.full_messages.join(", ")
     end
 
     redirect_to menus_path

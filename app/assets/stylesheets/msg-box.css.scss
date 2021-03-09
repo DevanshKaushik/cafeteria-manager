@@ -9,6 +9,11 @@
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16);
   pointer-events: none;
   animation: fade-in 0.2s ease, fade-out 4s ease forwards 0.2s;
+  z-index: 100;
+
+  p {
+    line-height: 1.4;
+  }
 
   p:first-child {
     font-size: 20px;
