@@ -24,14 +24,10 @@
   }
 
   &__cart {
-    margin-bottom: 100px;
-
-    &--item {
-      padding: 40px;
-      box-shadow: 0 10px 40px rgba(#3a3944, 0.16);
-      border-radius: 10px;
-      margin-bottom: 40px;
-    }
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(#3a3944, 0.16);
+    border-radius: 10px;
+    margin-bottom: 40px;
 
     &--title {
       font-size: 18px;
@@ -71,30 +67,6 @@
   }
 
   &__previous {
-    &--item {
-      padding: 40px;
-      box-shadow: 0 10px 40px rgba(#3a3944, 0.16);
-      border-radius: 10px;
-      margin-bottom: 40px;
-    }
-
-    &--id {
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 10px;
-
-      a {
-        color: #5d15bb;
-      }
-    }
-
-    &--date {
-      font-size: 14px;
-      font-style: italic;
-      color: grey;
-      margin-bottom: 30px;
-    }
-
     &--status {
       font-size: 15px;
       font-weight: bold;
@@ -122,8 +94,7 @@
       flex: 1;
     }
 
-    &--price,
-    &--price a {
+    &--price {
       color: #5d15bb;
     }
   }

@@ -13,15 +13,15 @@
 
   <% if order.nil? %>
     <h1 class="order__title">Uff! Nothing found</h1>
-    <img class="empty-state" src=<%= asset_path("EmptyState.svg")%> alt="Food Illustration">
+    <img class="empty-state" src=<%= asset_path("empty_state.svg")%> alt="Food Illustration">
 
   <% else %>
     <h1 class="order__title">Invoice</h1>
 
-    <section class="order__section order__previous">
-      <div class="order__previous--item">
-        <p class="order__previous--id">Order #<%= order.id %></p>
-        <p class="order__previous--date">Ordered at <%= order.date.to_formatted_s(:short) %></p>
+    <section class="order__section">
+      <div class="card">
+        <p class="card__title">Order #<%= order.id %></p>
+        <p class="card__sub-title">Ordered at <%= order.date.to_formatted_s(:short) %></p>
 
         <p class="order__invoice--legend">User details:</p>
 
