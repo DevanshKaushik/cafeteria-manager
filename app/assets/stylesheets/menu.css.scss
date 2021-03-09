@@ -10,6 +10,8 @@
     margin-bottom: 40px;
   }
 
+  // Display menu styles
+
   &__section {
     width: 100%;
     margin: 0 auto;
@@ -39,15 +41,6 @@
     border-radius: 10px;
     display: flex;
 
-    &--img {
-      display: block;
-      width: 100px;
-      height: 100px;
-      background-color: #5d15bb;
-      border-radius: 50%;
-      margin-right: 30px;
-    }
-
     &--details {
       flex: 1;
       display: flex;
@@ -76,29 +69,8 @@
       text-align: justify;
     }
   }
-}
 
-.emenu {
-  &__add {
-    display: grid;
-    grid-template-columns: 20% 30% 15% 15% 10%;
-    justify-content: space-between;
-    margin-bottom: 40px;
-    max-width: 60%;
-
-    &--input {
-      padding: 10px;
-      border-radius: 5px;
-      border: solid 2px #c9c9c9;
-      color: #3a3944;
-      outline: none;
-    }
-
-    &--btn {
-      border: solid 2px #5d15bb;
-      border-radius: 5px;
-    }
-  }
+  // Edit menu styles
 
   &__name {
     display: flex;
@@ -118,7 +90,30 @@
     }
   }
 
-  &__item {
+  &__add {
+    &--form {
+      display: grid;
+      grid-template-columns: 20% 30% 15% 15% 10%;
+      justify-content: space-between;
+      margin-bottom: 40px;
+      max-width: 60%;
+    }
+
+    &--input {
+      padding: 10px;
+      border-radius: 5px;
+      border: solid 2px #c9c9c9;
+      color: #3a3944;
+      outline: none;
+    }
+
+    &--btn {
+      border: solid 2px #5d15bb;
+      border-radius: 5px;
+    }
+  }
+
+  &__edititem {
     width: 100%;
     display: grid;
     grid-template-columns: 20% 0% 20% 30% 15% 15%;
@@ -147,7 +142,7 @@
       text-align: center;
     }
 
-    &--edit,
+    &--action,
     &--del {
       transition: all 0.2s ease;
 
@@ -156,7 +151,7 @@
       }
     }
 
-    &--edit {
+    &--action {
       cursor: pointer;
       width: 38px;
       padding: 10px;

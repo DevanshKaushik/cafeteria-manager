@@ -13,10 +13,10 @@
   <h1 class="menu__title">Customize your menu</h1>
 
   <section class="menu__section">
-    <div class="emenu__name">
-      <%= form_with(url: menu_path(current_menu.id), method: "put", id: "edit_menu_form") do %>
-        <%= hidden_field_tag("menu_name", current_menu.name) %>
-        <span contenteditable="true" id="edit_menu_name"><%= current_menu.name %></span>
+    <div class="menu__name">
+      <%= form_with(url: menu_path(current_menu.id), method: "put", id: "menu_name_form") do %>
+        <%= hidden_field_tag("menu_hidden_name", current_menu.name) %>
+        <span contenteditable="true" id="menu_name"><%= current_menu.name %></span>
       <% end %>
       <% if current_menu.active %>
         <p class="active-lable">Active</p>
@@ -28,41 +28,41 @@
       <% end %>
     </div>
 
-    <%= form_with(url: menu_items_path, method: "post", class: "emenu__add") do %>
+    <%= form_with(url: menu_items_path, method: "post", class: "menu__add--form") do %>
       <%= hidden_field_tag("menu_id", @menu_id) %>
-      <%= text_field_tag("name", nil, placeholder: "Item name", class: "emenu__add--input") %>
-      <%= text_field_tag("description", nil, placeholder: "Item description", class: "emenu__add--input") %>
-      <%= number_field_tag("price", nil, placeholder: "Price", class: "emenu__add--input") %>
+      <%= text_field_tag("name", nil, placeholder: "Item name", class: "menu__add--input") %>
+      <%= text_field_tag("description", nil, placeholder: "Item description", class: "menu__add--input") %>
+      <%= number_field_tag("price", nil, placeholder: "Price", class: "menu__add--input") %>
       <%= select_tag("category", options_for_select([
         ["Breakfast", "Breakfast"],
         ["Lunch", "Lunch"],
         ["Dinner", "Dinner"]]
-      ), class: "emenu__add--input") %>
-      <%= submit_tag("Add", class: "btn emenu__add--btn") %>
+      ), class: "menu__add--input") %>
+      <%= submit_tag("Add", class: "btn menu__add--btn") %>
     <% end %>
 
     <% current_menu.menu_items.order("created_at").each do |menu_item| %>
-      <div class="emenu__item" id="menu_item_<%= menu_item.id %>">
+      <div class="menu__edititem" id="menu_edititem_<%= menu_item.id %>">
         <div>
           <%= form_with(url: destroy_menu_item_path(menu_item.id), method: "delete" ) do %>
             <%= hidden_field_tag("menu_id", @menu_id) %>
-            <%= submit_tag("X", class: "delete-btn emenu__item--del" ) %>
+            <%= submit_tag("X", class: "delete-btn menu__edititem--del" ) %>
           <% end %>
 
-          <%= image_tag asset_path("edit.svg"), class: "emenu__item--edit", data: {id: menu_item.id, tick_icon: asset_path("tick.png"), edit_icon: asset_path("edit.svg")}%>
+          <%= image_tag asset_path("edit.svg"), class: "menu__edititem--action", data: {menu_item_id: menu_item.id, tick_icon: asset_path("tick.png"), edit_icon: asset_path("edit.svg"), state: "edit"}%>
         </div>
 
-        <%= form_with(url: update_menu_item_path(menu_item.id), method: "put", id: "edit_menu_item_form_#{menu_item.id}" ) do %>
-          <%= hidden_field_tag("name", menu_item.name, id: "hidden_name_#{menu_item.id}") %>
-          <%= hidden_field_tag("desc", menu_item.description, id: "hidden_desc_#{menu_item.id}") %>
-          <%= hidden_field_tag("price", menu_item.price, id: "hidden_price_#{menu_item.id}") %>
-          <%= hidden_field_tag("category", menu_item.category, id: "hidden_category_#{menu_item.id}") %>
+        <%= form_with(url: update_menu_item_path(menu_item.id), method: "put", id: "menu_edititem_form_#{menu_item.id}" ) do %>
+          <%= hidden_field_tag("name", menu_item.name, id: "menu_hidden_name_#{menu_item.id}") %>
+          <%= hidden_field_tag("desc", menu_item.description, id: "menu_hidden_desc_#{menu_item.id}") %>
+          <%= hidden_field_tag("price", menu_item.price, id: "menu_hidden_price_#{menu_item.id}") %>
+          <%= hidden_field_tag("category", menu_item.category, id: "menu_hidden_category_#{menu_item.id}") %>
         <% end %>
 
-        <p class="emenu__item--name" id="menu_item_<%= menu_item.id %>_name"><%= menu_item.name %></p>
-        <p class="emenu__item--desc" id="menu_item_<%= menu_item.id %>_desc"><%= menu_item.description %></p>
-        <p class="emenu__item--price" id="menu_item_<%= menu_item.id %>_price">&#x20B9; <%= menu_item.price %></p>
-        <p class="emenu__item--category" id="menu_item_<%= menu_item.id %>_category"><%= menu_item.category %></p>
+        <p class="menu__edititem--name" id="menu_edititem_name_<%= menu_item.id %>"><%= menu_item.name %></p>
+        <p class="menu__edititem--desc" id="menu_edititem_desc_<%= menu_item.id %>"><%= menu_item.description %></p>
+        <p class="menu__edititem--price" id="menu_edititem_price_<%= menu_item.id %>">&#x20B9; <%= menu_item.price %></p>
+        <p class="menu__edititem--category" id="menu_edititem_category_<%= menu_item.id %>"><%= menu_item.category %></p>
       </div>
     <% end %>
 

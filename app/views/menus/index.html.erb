@@ -19,11 +19,11 @@
 <main class="menu">
 
   <% if Menu.active.menu_items.empty? %>
-    <p class="menu__title">Uff! Nothing available right now</p>
-    <img class="empty-state" src=<%= asset_path("EmptyState.svg")%> alt="Food Illustration">
+    <h1 class="menu__title">Uff! Nothing available right now</h1>
+    <img class="empty-state" src=<%= asset_path("empty_state.svg")%> alt="Food Illustration">
   <% else %>
 
-    <p class="menu__title">Order your delicious food</p>
+    <h1 class="menu__title">Order your delicious food</h1>
 
     <%= render partial: "menu-section", locals: {
       menu_title: "Breakfast",

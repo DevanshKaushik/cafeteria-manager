@@ -1,90 +1,120 @@
-const menu_name = document.getElementById("edit_menu_name")
-const edit_menu_form = document.getElementById("edit_menu_form")
-const hidden_field = document.getElementById("menu_name")
-const edit_menu_items = document.querySelectorAll(".emenu__item--edit")
+// Selecting all the required DOM elements
+const menuName = document.getElementById("menu_name")
+const menuNameForm = document.getElementById("menu_name_form")
+const menuNameHidden = document.getElementById("menu_hidden_name")
+const menuEditItemBtns = document.querySelectorAll(".menu__edititem--action")
 
-let curr_value = ""
+// For editing the menu name
+let currentMenuName = ""
 
-menu_name.addEventListener("focus", () => {
-  curr_value = menu_name.innerText
+menuName.addEventListener("focus", () => {
+  currentMenuName = menuName.innerText
 })
 
-menu_name.addEventListener("blur", () => {
-  if (curr_value === menu_name.innerText) {
+menuName.addEventListener("blur", () => {
+  if (currentMenuName === menuName.innerText) {
     return
   }
 
-  hidden_field.value = menu_name.innerText
-  edit_menu_form.submit()
+  menuNameHidden.value = menuName.innerText
+  menuNameForm.submit()
 })
 
-edit_menu_items.forEach((item) => [
-  item.addEventListener("click", () => {
-    id = item.dataset.id
+// For editing the individual menu items
+menuEditItemBtns.forEach((actionBtn) => [
 
-    if (item.src.substring(item.src.lastIndexOf("/assets")) === item.dataset.tickIcon) {
-      const hidden_name = document.querySelector(`#hidden_name_${id}`)
-      hidden_name.value = document.getElementById(`menu_item_${id}_name`).value
+  // Adding click event listener to every edit button for the menu item
+  actionBtn.addEventListener("click", () => {
+    const menuItemId = actionBtn.dataset.menuItemId
 
-      const hidden_desc = document.querySelector(`#hidden_desc_${id}`)
-      hidden_desc.value = document.getElementById(`menu_item_${id}_desc`).value
+    const editBtnState = actionBtn.dataset.state
 
-      const hidden_price = document.querySelector(`#hidden_price_${id}`)
-      hidden_price.value = document.getElementById(`menu_item_${id}_price`).value
+    if (editBtnState === "save") {
 
-      const hidden_category = document.querySelector(`#hidden_category_${id}`)
-      hidden_category.value = document.getElementById(`menu_item_${id}_category`).value
+      // Assigning the new values to the hidden fields of the menu item
+      const classNameSuffixes = ["name", "desc", "price", "category"]
+      classNameSuffixes.forEach(classNameSuffix => {
+        changeHiddenFieldValue(`menu_hidden_${classNameSuffix}_${menuItemId}`, `menu_edititem_${classNameSuffix}_${menuItemId}`)
+      })
 
-      item.src = item.dataset.editIcon
+      // Converting save icon to the edit icon and setting the state to "edit"
+      changeActionState(actionBtn, "edit")
 
-      console.log(hidden_name, hidden_desc, hidden_price, hidden_category)
-
-      const menu_item_form = document.getElementById(`edit_menu_item_form_${id}`)
-      menu_item_form.submit()
+      // Submitting the form to post the changes
+      const menuItemForm = document.getElementById(`menu_edititem_form_${menuItemId}`)
+      menuItemForm.submit()
 
       return
     }
 
-    item.src = item.dataset.tickIcon
-    showEditForm(id)
+    // Converting edit icon to the save icon and setting the state to "save"
+    changeActionState(actionBtn, "save")
+    showEditForm(menuItemId)
   })
 ])
 
-function showEditForm(id) {
-  const menu_item_name = document.getElementById(`menu_item_${id}_name`)
+function showEditForm(menuItemId) {
 
-  const new_menu_item_name = document.createElement("input")
-  new_menu_item_name.classList.add("emenu__item--input")
-  new_menu_item_name.id = `menu_item_${id}_name`
-  new_menu_item_name.value = menu_item_name.innerText
-  menu_item_name.parentElement.replaceChild(new_menu_item_name, menu_item_name)
+  const elementClassName = "menu__edititem--input"
 
-  const menu_item_desc = document.getElementById(`menu_item_${id}_desc`)
+  // Setting current element to name field
+  let currentElementId = `menu_edititem_name_${menuItemId}`
+  let currentElement = document.getElementById(currentElementId)
 
-  const new_menu_item_desc = document.createElement("input")
-  new_menu_item_desc.classList.add("emenu__item--input")
-  new_menu_item_desc.id = `menu_item_${id}_desc`
-  new_menu_item_desc.value = menu_item_desc.innerText
-  menu_item_desc.parentElement.replaceChild(new_menu_item_desc, menu_item_desc)
+  let newCurrentElement = document.createElement("input")
+  newCurrentElement.classList.add(elementClassName)
+  newCurrentElement.id = currentElementId
+  newCurrentElement.value = currentElement.innerText
+  currentElement.parentElement.replaceChild(newCurrentElement, currentElement)
 
-  const menu_item_price = document.getElementById(`menu_item_${id}_price`)
+  // Setting current element to description field
+  currentElementId = `menu_edititem_desc_${menuItemId}`
+  currentElement = document.getElementById(currentElementId)
 
-  const new_menu_item_price = document.createElement("input")
-  new_menu_item_price.type= "number"
-  new_menu_item_price.classList.add("emenu__item--input")
-  new_menu_item_price.id = `menu_item_${id}_price`
-  new_menu_item_price.value = menu_item_price.innerText.slice(2)
-  menu_item_price.parentElement.replaceChild(new_menu_item_price, menu_item_price)
+  newCurrentElement = document.createElement("input")
+  newCurrentElement.classList.add(elementClassName)
+  newCurrentElement.id = currentElementId
+  newCurrentElement.value = currentElement.innerText
+  currentElement.parentElement.replaceChild(newCurrentElement, currentElement)
 
-  const menu_item_category = document.getElementById(`menu_item_${id}_category`)
+  // Setting current element to price field
+  currentElementId = `menu_edititem_price_${menuItemId}`
+  currentElement = document.getElementById(currentElementId)
 
-  const new_menu_item_category = document.createElement("select")
-  new_menu_item_category.classList.add("emenu__item--input")
-  new_menu_item_category.id = `menu_item_${id}_category`
-  new_menu_item_category.innerHTML = `
+  newCurrentElement = document.createElement("input")
+  newCurrentElement.type= "number"
+  newCurrentElement.classList.add(elementClassName)
+  newCurrentElement.id = currentElementId
+  newCurrentElement.value = currentElement.innerText.slice(2)
+  currentElement.parentElement.replaceChild(newCurrentElement, currentElement)
+
+  // Setting current element to category field
+  currentElementId = `menu_edititem_category_${menuItemId}`
+  currentElement = document.getElementById(currentElementId)
+
+  newCurrentElement = document.createElement("select")
+  newCurrentElement.classList.add(elementClassName)
+  newCurrentElement.id = currentElementId
+  newCurrentElement.innerHTML = `
     <option value="Breakfast">Breakfast</option>
     <option value="Lunch">Lunch</option>
     <option value="Dinner">Dinner</option>
   `
-  menu_item_category.parentElement.replaceChild(new_menu_item_category, menu_item_category)
+  currentElement.parentElement.replaceChild(newCurrentElement, currentElement)
+}
+
+function changeActionState(btn, state) {
+  btn.dataset.state = state
+
+  if (state === "save") {
+    btn.src = btn.dataset.tickIcon
+    return
+  }
+
+  btn.src = btn.dataset.editIcon
+}
+
+function changeHiddenFieldValue(hiddenFieldClass, inputFieldClass) {
+  const hiddenField = document.getElementById(hiddenFieldClass)
+  hiddenField.value = document.getElementById(inputFieldClass).value
 }
