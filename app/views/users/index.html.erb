@@ -10,24 +10,24 @@
 <main class="user">
   <% if User.all.empty? %>
     <h1 class="user__title">Uff! No user found</h1>
-    <img class="empty-state" src=<%= asset_path("EmptyState.svg")%> alt="Food Illustration">
+    <img class="empty-state" src=<%= asset_path("empty_state.svg")%> alt="Food Illustration">
   <% else %>
     <h1 class="user__title">Manage all users</h1>
 
-    <section class="menu__section">
+    <section class="user__section">
 
       <%= form_with(url: users_path, method: "post", class: "user__add") do %>
-        <%= text_field_tag("first_name", nil, placeholder: "First Name", class: "emenu__add--input") %>
-        <%= text_field_tag("last_name", nil, placeholder: "Last Name", class: "emenu__add--input") %>
-        <%= email_field_tag("email", nil, placeholder: "Email", class: "emenu__add--input") %>
-        <%= password_field_tag("password", nil, placeholder: "Password", class: "emenu__add--input") %>
+        <%= text_field_tag("first_name", nil, placeholder: "First Name", class: "user__add--input") %>
+        <%= text_field_tag("last_name", nil, placeholder: "Last Name", class: "user__add--input") %>
+        <%= email_field_tag("email", nil, placeholder: "Email", class: "user__add--input") %>
+        <%= password_field_tag("password", nil, placeholder: "Password", class: "user__add--input") %>
 
         <%= select_tag("role", options_for_select([
           ["Customer", "customer"],
           ["Clerk", "clerk"],
           ["Owner", "owner"]],
-        ), class: "emenu__add--input") %>
-        <%= submit_tag("Create", class: "btn emenu__add--btn") %>
+        ), {class: "user__add--input"}) %>
+        <%= submit_tag("Create", class: "btn user__add--btn") %>
       <% end %>
 
       <% User.all.each do |user| %>
@@ -44,8 +44,7 @@
             <% end %>
           </div>
         </div>
-    <% end %>
-
+      <% end %>
     </section>
   <% end %>
 </main>

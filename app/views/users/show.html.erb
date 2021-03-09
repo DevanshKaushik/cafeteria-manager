@@ -12,38 +12,38 @@
 <main class="user">
   <% if !user %>
     <h1 class="user__title">No user found</h1>
-    <img class="empty-state" src=<%= asset_path("EmptyState.svg")%> alt="Food Illustration">
+    <img class="empty-state" src=<%= asset_path("empty_state.svg")%> alt="Food Illustration">
   <% else %>
     <% user_name = user.first_name + " " + user.last_name %>
-
     <h1 class="user__title">Manage User</h1>
 
-  <section class="order__section order__previous">
-    <div class="order__previous--item">
+    <section class="order__section order__previous">
+      <div class="card">
 
-      <p class="order__previous--id">User#<%= user.id %></p>
+        <p class="card__title">User#<%= user.id %></p>
+        <p class="card__sub-title">Manage the user details</p>
 
-      <p class="order__invoice--user">
+        <p class="user__show--details">
           User name: <%= user_name %>
-      </p>
+        </p>
 
-      <p class="order__invoice--user">
-        User role: <%= user.role.capitalize %>
-      </p>
+        <p class="user__show--details">
+          Role: <%= user.role.capitalize %>
+        </p>
 
-      <p class="order__invoice--user">
-        User email: <%= link_to user.email, "mailto:#{user.email}" %>
-      </p>
+        <p class="user__show--details">
+          E-mail: <%= link_to user.email, "mailto:#{user.email}" %>
+        </p>
 
-      <div class="dashboard__order--btns">
-        <%= link_to "View Orders", orders_path(user_id: user.id), class: "btn dashboard__order--btn" %>
-        <%= link_to "Edit User", edit_user_path(user.id), class: "btn btn--green dashboard__order--btn"%>
+        <p class="user__show--details">
+          Total Orders: <%= user.orders.count %>
+        </p>
+
+        <div class="user__show--btns">
+          <%= link_to "View Orders", orders_path(user_id: user.id), class: "btn user__show--btn" %>
+          <%= link_to "Edit User", edit_user_path(user.id), class: "btn btn--green user__show--btn"%>
+        </div>
       </div>
-
-
-    </div>
-  </section>
-
-
+    </section>
   <% end %>
 </main>
