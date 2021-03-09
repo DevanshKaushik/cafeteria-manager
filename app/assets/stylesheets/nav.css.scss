@@ -1,9 +1,13 @@
 .nav {
+  top: 0;
+  position: sticky;
   width: 100%;
   display: flex;
   justify-content: space-between;
   padding: 30px 40px;
   box-shadow: 0 5px 20px rgba(58, 57, 68, 0.16);
+  background-color: white;
+  z-index: 100;
 }
 
 .nav__list {
