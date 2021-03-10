@@ -24,7 +24,7 @@ This cafeteria management system lets you manage orders, customize menus and ava
 
 You can visit the app [here](http://devansh-cafe-manager.herokuapp.com/).
 
-![The home page](demo/homepage.png)
+![The home page](demo/HomePage.png)
 
 From there you can either create a new account or log into your existing account.
 
