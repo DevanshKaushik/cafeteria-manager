@@ -1,4 +1,4 @@
-<% if orders[0..-2].empty? %>
+<% if orders.active_orders.empty? %>
   <h1 class="order__title">Woops! Order something delicious today</h1>
   <img class="empty-state" src=<%= asset_path("empty_state.svg")%> alt="Food Illustration">
 <% else %>

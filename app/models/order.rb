@@ -29,7 +29,7 @@ class Order < ActiveRecord::Base
   end
 
   def self.pending_orders
-    all.where(delivered_at: nil)
+    all.active_orders.where(delivered_at: nil)
   end
 
   def self.delivered_orders
@@ -38,7 +38,7 @@ class Order < ActiveRecord::Base
 
   def self.walkin_orders
     user_ids = User.all.where("role = 'clerk' OR role = 'owner'").map { |user| user.id }.join(", ")
-    all.where("user_id IN (#{user_ids})").order("date DESC")
+    all.active_orders.where("user_id IN (#{user_ids})").order("date DESC")
   end
 
   def self.today_revenue
@@ -46,7 +46,7 @@ class Order < ActiveRecord::Base
   end
 
   def self.today_order
-    all.where("date BETWEEN ? AND ?", DateTime.now.beginning_of_day, DateTime.now.end_of_day)
+    all.active_orders.where("date BETWEEN ? AND ?", DateTime.now.beginning_of_day, DateTime.now.end_of_day)
   end
 
   def self.max_orders
