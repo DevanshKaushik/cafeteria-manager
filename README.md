@@ -62,13 +62,13 @@ This is the homepage of the app from where you can either create a new account o
 
 ### Jump to:
 
-- [Customer's Account](#customer's-account)<br/>
-- [Clerk's Account](#clerk's-account)<br/>
-- [Owner's Account](#owner's-account)<br/>
+- [Customer's Account](#customer-account)<br/>
+- [Clerk's Account](#clerk-account)<br/>
+- [Owner's Account](#owner-account)<br/>
 
 <br/>
 
-### Customer's account
+### Customer account
 
 <br/>
 
@@ -86,7 +86,7 @@ Once you finalize your order, you will be redirected to the order page where you
 
 <br/>
 
-### Clerk's account
+### Clerk account
 
 <br/>
 
@@ -104,7 +104,7 @@ You can also see the deliverd orders and can view invoice for an particular orde
 
 <br/>
 
-### Owner's account
+### Owner account
 
 <br/>
 
